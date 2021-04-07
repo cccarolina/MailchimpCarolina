@@ -70,7 +70,8 @@ public class StepDefinitions {
 
 	@Given("I have entered   password {string} in the passwordfield")
 	public void i_have_entered_password_in_the_passwordfield(String Password) {
-		WebElement passwordbox = Wait(By.id("new_password"));
+		WebElement passwordbox = Wait (By.cssSelector("input[id=new_password]"));
+
 		passwordbox.sendKeys(Password);
 
 	}
@@ -84,35 +85,36 @@ public class StepDefinitions {
 
 	@Then("depending if valid or invalid inputs login status {string} appears")
 	public void depending_if_valid_or_invalid_inputs_login_status_appears(String status) {
-
-		// använarnamn upptaget
-		if (status == "UsernameTaken") {
+	 
+		if (status.equals ("UsernameTaken")) {
 
 			WebElement usernameExist = Wait(By.className("invalid-error"));
-			assertEquals(usernameExist,
-					"Another user with this username already exists. Maybe it's your evil twin. Spooky.");
+			assertEquals(
+					"Another user with this username already exists. Maybe it's your evil twin. Spooky.", usernameExist.getText());
 		}
 
 		// email saknas
-		else if (status == "NoEmailEntered") {
+		 if (status.equals ("NoEmailEntered")) {
 			WebElement NoEmail = Wait(By.className("invalid-error"));
-			assertEquals(NoEmail, "Please enter a value");
+			assertEquals("Please enter a value", NoEmail.getText());
 		}
 
 		// för långt använarnamn
-		else if (status == "LongUser") {
+		 if (status.equals ("LongUser")) {
 			WebElement LongUser = Wait(By.className("invalid-error"));
-			assertEquals(LongUser, "Enter a value less than 100 characters long");
+			assertEquals( "Enter a value less than 100 characters long",LongUser.getText());
+			//WebElement failmessage = 
 		}
 
 		// användarekonto skapas
 
-		else if (status == "validinput") {
+		  if (status.equals ("validinput")) {
 			WebElement Loginpage = Wait(By.className("margin-bottom"));
-			assertEquals(Loginpage, "Check your email");
-
+			assertEquals("Check your email", Loginpage.getText());
+			String URL = driver.getCurrentUrl();
+			equals (URL.startsWith("https://login.mailchimp.com/signup/success"));
 		}
-		driver.quit();
+		//driver.quit();
 
 	}
 

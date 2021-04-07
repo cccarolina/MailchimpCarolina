@@ -16,6 +16,6 @@ Then depending if valid or invalid inputs login status "<status>" appears
 Examples:
 |status        |email                     |username               |password                    |
 |validinput    |validemail                |validusername          |Mailemail13!               |
-|UsernameTaken |validemail                |Jack                   |Hejhopp1!                   |
+|UsernameTaken |validemail								|Jack                   |Hejhopp1!                   |
 |NoEmailEntered|                          |Hejhopphej             |Hejhopp163!                   |
 |LongUser |hejhopp202019@hotmail.com |aaaaaaaaaaaaaaaaaabbbbbbbbb733002ccccccccccccccccccdddddddddddddddddeeeeeeeeeeeeeeeeeeeeeffffff4894894939ffffffffffjjjjjjjjjj |Hejhopp4341!|
