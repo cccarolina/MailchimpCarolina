@@ -35,14 +35,16 @@ public class StepDefinitions {
 
 	@Given("I have entered  email {string} in the emailfield")
 	public void i_have_entered_email_in_the_emailfield(String Email) {
+		WebElement newemail = Wait(By.id("email"));
+
 		if (Email.equals("validemail")) {
-			WebElement newemail = driver.findElement(By.id("email"));
+
 			Random randomEmail = new Random();
 			int randomInt = randomEmail.nextInt(10000);
 			newemail.sendKeys("username" + randomInt + "@gmail.com");
 		} else {
-			WebElement EmailBox = driver.findElement(By.id("email"));
-			EmailBox.sendKeys(Email);
+
+			newemail.sendKeys(Email);
 
 		}
 
@@ -50,26 +52,33 @@ public class StepDefinitions {
 
 	@Given("I have entered  username {string} in the usernamefield")
 	public void i_have_entered_username_in_the_usernamefield(String Username) {
-		WebElement UsernameBox = driver.findElement(By.id("new_username"));
-		UsernameBox.sendKeys(Username);
+
 		WebElement newusername = Wait(By.id("new_username"));
-		Random randomuser = new Random();
-		int randomsInt = randomuser.nextInt(10000);
-		newusername.sendKeys("carolinacsusername" + randomsInt);
+
+		if (Username.equals("validusername")) {
+			Random randomuser = new Random();
+			int randomsInt = randomuser.nextInt(10000);
+			newusername.sendKeys("randomrandomusername" + randomsInt);
+		}
+
+		else {
+
+			newusername.sendKeys(Username);
+		}
 
 	}
 
 	@Given("I have entered   password {string} in the passwordfield")
 	public void i_have_entered_password_in_the_passwordfield(String Password) {
-		WebElement passwordbox = driver.findElement(By.id("new_password"));//
+		WebElement passwordbox = Wait(By.id("new_password"));
 		passwordbox.sendKeys(Password);
 
 	}
 
 	@When("I press Signup")
 	public void i_press_signup_buttom() {
-		WebElement signupbottom = driver.findElement(By.id("create-account"));
-		signupbottom.click();
+		WebElement signupbutton = Wait(By.id("create-account"));
+		signupbutton.click();
 
 	}
 
@@ -91,6 +100,19 @@ public class StepDefinitions {
 		}
 
 		// för långt använarnamn
+		else if (status == "LongUser") {
+			WebElement LongUser = Wait(By.className("invalid-error"));
+			assertEquals(LongUser, "Enter a value less than 100 characters long");
+		}
+
+		// användarekonto skapas
+
+		else if (status == "validinput") {
+			WebElement Loginpage = Wait(By.className("margin-bottom"));
+			assertEquals(Loginpage, "Check your email");
+
+		}
+		driver.quit();
 
 	}
 
@@ -99,5 +121,4 @@ public class StepDefinitions {
 		return webElement;
 	}
 
-//driver quit
 }
