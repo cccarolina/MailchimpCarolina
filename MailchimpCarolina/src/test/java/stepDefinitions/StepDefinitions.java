@@ -111,7 +111,7 @@ public class StepDefinitions {
 		// användarekonto skapas
 
 		  if (status.equals ("validinput")) {
-			WebElement Loginpage = Wait(By.className("!margin-bottom--lv3 no-transform center-on-medium"));
+			WebElement Loginpage = Wait(By.tagName("h1"));
 			assertEquals("Check your email", Loginpage.getText());
 			String URL = driver.getCurrentUrl();
 			equals (URL.startsWith("https://login.mailchimp.com/signup/success"));
