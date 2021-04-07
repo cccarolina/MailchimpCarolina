@@ -56,7 +56,6 @@ public class StepDefinitions {
 	public void i_have_entered_username_in_the_usernamefield(String Username) {
 
 		WebElement newusername = Wait(By.cssSelector("input[id=new_username]"));
-
 		if (Username.equals("validusername")) {
 			Random randomuser = new Random();
 			int randomsInt = randomuser.nextInt(10000);
@@ -93,19 +92,25 @@ public class StepDefinitions {
 			WebElement usernameExist = Wait(By.className("invalid-error"));
 			assertEquals(
 					"Another user with this username already exists. Maybe it's your evil twin. Spooky.", usernameExist.getText());
+			WebElement newusername = Wait(By.cssSelector("input[id=new_username]"));
+			
+			assertEquals("invalid av-text", newusername.getAttribute("class") );
+			
 		}
 
 		// email saknas
 		 if (status.equals ("NoEmailEntered")) {
 			WebElement NoEmail = Wait(By.className("invalid-error"));
 			assertEquals("Please enter a value", NoEmail.getText());
-		}
+			String URL = driver.getCurrentUrl();
+			assertEquals ("https://login.mailchimp.com/signup/post", URL);
+			}
 
 		// för långt använarnamn
 		 if (status.equals ("LongUser")) {
 			WebElement LongUser = Wait(By.className("invalid-error"));
 			assertEquals( "Enter a value less than 100 characters long",LongUser.getText());
-			//WebElement failmessage = 
+			 
 		}
 
 		// användarekonto skapas
@@ -114,7 +119,7 @@ public class StepDefinitions {
 			WebElement Loginpage = Wait(By.tagName("h1"));
 			assertEquals("Check your email", Loginpage.getText());
 			String URL = driver.getCurrentUrl();
-			equals (URL.startsWith("https://login.mailchimp.com/signup/success"));
+			assertEquals (true, URL.startsWith("https://login.mailchimp.com/signup/success"));
 		}
 		//driver.quit();
 
