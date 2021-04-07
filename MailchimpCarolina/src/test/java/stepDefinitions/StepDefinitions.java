@@ -42,7 +42,7 @@ public class StepDefinitions {
 			newemail.sendKeys("username" + randomInt + "@gmail.com");
 		} else {
 			WebElement EmailBox = driver.findElement(By.id("email"));
-			EmailBox.sendKeys("ABC");
+			EmailBox.sendKeys(Email);
 
 		}
 
