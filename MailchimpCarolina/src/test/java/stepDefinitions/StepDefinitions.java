@@ -110,7 +110,8 @@ public class StepDefinitions {
 		 if (status.equals ("LongUser")) {
 			WebElement LongUser = Wait(By.className("invalid-error"));
 			assertEquals( "Enter a value less than 100 characters long",LongUser.getText());
-			 
+			WebElement failmessage = Wait(By.tagName("li"));
+			assertEquals ( "Please check your entry and try again.", failmessage.getText());
 		}
 
 		// användarekonto skapas
