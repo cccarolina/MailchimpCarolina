@@ -71,16 +71,16 @@ public class StepDefinitions {
 
 	@Given("I have entered   password {string} in the passwordfield")
 	public void i_have_entered_password_in_the_passwordfield(String Password) {
-		WebElement passwordbox = Wait (By.cssSelector("input[id=new_password]"));
+		WebElement PasswordBox = Wait (By.cssSelector("input[id=new_password]"));
 
-		passwordbox.sendKeys(Password);
+		PasswordBox.sendKeys(Password);
 
 	}
 
 	@When("I press Signup")
 	public void i_press_signup_buttom() {
-		WebElement signupbutton = Wait (By.id("create-account"));
-		signupbutton.click();
+		WebElement signupButton = Wait (By.id("create-account"));
+		signupButton.click();
 
 	}
 
@@ -92,9 +92,9 @@ public class StepDefinitions {
 			WebElement usernameExist = Wait(By.className("invalid-error"));
 			assertEquals(
 					"Another user with this username already exists. Maybe it's your evil twin. Spooky.", usernameExist.getText());
-			WebElement newusername = Wait(By.cssSelector("input[id=new_username]"));
+			WebElement newUsername = Wait(By.cssSelector("input[id=new_username]"));
 			
-			assertEquals("invalid av-text", newusername.getAttribute("class") );
+			assertEquals("invalid av-text", newUsername.getAttribute("class") );
 			
 		}
 
@@ -110,15 +110,15 @@ public class StepDefinitions {
 		 if (status.equals ("LongUser")) {
 			WebElement LongUser = Wait(By.className("invalid-error"));
 			assertEquals( "Enter a value less than 100 characters long",LongUser.getText());
-			WebElement failmessage = Wait(By.tagName("li"));
-			assertEquals ( "Please check your entry and try again.", failmessage.getText());
+			WebElement failMessage = Wait(By.tagName("li"));
+			assertEquals ( "Please check your entry and try again.", failMessage.getText());
 		}
 
 		// användarekonto skapas
 
 		  if (status.equals ("validinput")) {
-			WebElement Loginpage = Wait(By.tagName("h1"));
-			assertEquals("Check your email", Loginpage.getText());
+			WebElement LoginPage = Wait(By.tagName("h1"));
+			assertEquals("Check your email", LoginPage.getText());
 			String URL = driver.getCurrentUrl();
 			assertEquals (true, URL.startsWith("https://login.mailchimp.com/signup/success"));
 		}
