@@ -85,7 +85,7 @@ public class StepDefinitions {
 		}
 
 		// email saknas
-		if (status.equals("NoEmailEntered")) {
+		else if (status.equals("NoEmailEntered")) {
 			WebElement noEmail = Wait(By.className("invalid-error"));
 			assertEquals("Please enter a value", noEmail.getText());
 		
@@ -94,7 +94,7 @@ public class StepDefinitions {
 		}
 
 		// för långt använarnamn
-		if (status.equals("LongUser")) {
+		else if (status.equals("LongUser")) {
 			WebElement longUser = Wait(By.className("invalid-error"));
 			assertEquals("Enter a value less than 100 characters long", longUser.getText());
 			
@@ -103,12 +103,17 @@ public class StepDefinitions {
 		}
 
 		// användarkonto skapas
-		if (status.equals("validinput")) {
+		else if (status.equals("validinput")) {
 			WebElement loginPage = Wait(By.tagName("h1"));
 			assertEquals("Check your email", loginPage.getText());
 			
 			String URL = driver.getCurrentUrl();
 			assertEquals(true, URL.startsWith("https://login.mailchimp.com/signup/success"));
+		}
+		
+		// om vi kommer in i else är "status" fel - då ska testet faila
+		else {
+			assertEquals(true, false);
 		}
 		driver.quit();
 	}
