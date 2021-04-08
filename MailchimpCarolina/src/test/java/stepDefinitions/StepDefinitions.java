@@ -32,7 +32,7 @@ public class StepDefinitions {
 		driver.get("https://login.mailchimp.com/signup/");
 	}
 
-	@Given("I have entered  email {string} in the emailfield")
+	@Given("I have entered email {string} in the emailfield")
 	public void i_have_entered_email_in_the_emailfield(String Email) {
 		WebElement newemail = Wait(By.cssSelector("input[id=email]"));
 
@@ -45,7 +45,7 @@ public class StepDefinitions {
 		}
 	}
 
-	@Given("I have entered  username {string} in the usernamefield")
+	@Given("I have entered username {string} in the usernamefield")
 	public void i_have_entered_username_in_the_usernamefield(String Username) {
 		WebElement newusername = Wait(By.cssSelector("input[id=new_username]"));
 		
@@ -59,14 +59,14 @@ public class StepDefinitions {
 		}
 	}
 
-	@Given("I have entered   password {string} in the passwordfield")
+	@Given("I have entered password {string} in the passwordfield")
 	public void i_have_entered_password_in_the_passwordfield(String Password) {
 		WebElement PasswordBox = Wait(By.cssSelector("input[id=new_password]"));
 		PasswordBox.sendKeys(Password);
 	}
 
-	@When("I press Signup")
-	public void i_press_signup_buttom() {
+	@When("I press signup")
+	public void i_press_signup() {
 		WebElement signupButton = Wait(By.id("create-account"));
 		signupButton.click();
 	}
@@ -86,8 +86,8 @@ public class StepDefinitions {
 
 		// email saknas
 		if (status.equals("NoEmailEntered")) {
-			WebElement NoEmail = Wait(By.className("invalid-error"));
-			assertEquals("Please enter a value", NoEmail.getText());
+			WebElement noEmail = Wait(By.className("invalid-error"));
+			assertEquals("Please enter a value", noEmail.getText());
 		
 			String URL = driver.getCurrentUrl();
 			assertEquals("https://login.mailchimp.com/signup/post", URL);
@@ -95,8 +95,8 @@ public class StepDefinitions {
 
 		// för långt använarnamn
 		if (status.equals("LongUser")) {
-			WebElement LongUser = Wait(By.className("invalid-error"));
-			assertEquals("Enter a value less than 100 characters long", LongUser.getText());
+			WebElement longUser = Wait(By.className("invalid-error"));
+			assertEquals("Enter a value less than 100 characters long", longUser.getText());
 			
 			WebElement failMessage = Wait(By.tagName("li"));
 			assertEquals("Please check your entry and try again.", failMessage.getText());
@@ -104,8 +104,8 @@ public class StepDefinitions {
 
 		// användarkonto skapas
 		if (status.equals("validinput")) {
-			WebElement LoginPage = Wait(By.tagName("h1"));
-			assertEquals("Check your email", LoginPage.getText());
+			WebElement loginPage = Wait(By.tagName("h1"));
+			assertEquals("Check your email", loginPage.getText());
 			
 			String URL = driver.getCurrentUrl();
 			assertEquals(true, URL.startsWith("https://login.mailchimp.com/signup/success"));

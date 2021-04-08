@@ -7,10 +7,10 @@ Feature: Register a new user
 Scenario Outline: Signup new user at mailchimp 
 
 Given I have navigate to MailChimp signup site
-Given I have entered  email "<email>" in the emailfield
-And I have entered  username "<username>" in the usernamefield
-And  I have entered   password "<password>" in the passwordfield
-When I press Signup
+Given I have entered email "<email>" in the emailfield
+And I have entered username "<username>" in the usernamefield
+And  I have entered password "<password>" in the passwordfield
+When I press signup
 Then depending if valid or invalid inputs login status "<status>" appears 
 
 Examples:
