@@ -1,9 +1,9 @@
 Feature: Register a new user
--email is not registered before 
--the username is not registred before
--all field are registred
--the username is less then 100 letters 
-@mytag
+- the username is not registred before
+- no field is empty
+- the username is less then 100 letters
+- new valid username, email and password should create user
+
 Scenario Outline: Signup new user at mailchimp 
 
 Given I have navigate to MailChimp signup site
